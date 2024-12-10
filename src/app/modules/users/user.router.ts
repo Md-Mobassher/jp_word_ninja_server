@@ -14,10 +14,4 @@ router.post(
   UserControllers.changeStatus,
 )
 
-router.get(
-  '/me',
-  auth(USER_ROLE.superAdmin, USER_ROLE.admin, USER_ROLE.user),
-  UserControllers.getMe,
-)
-
 export const userRoutes = router

@@ -6,6 +6,7 @@ import AppError from '../../errors/AppError'
 import { TLoginUser } from './auth.interface'
 import { createToken, verifyToken } from './auth.utils'
 import { User } from '../users/user.model'
+import { USER_ROLE } from '../users/user.constant'
 
 const registerUser = async (payload: TLoginUser) => {
   // checking if the user is exist
@@ -246,6 +247,22 @@ const resetPassword = async (
   return result
 }
 
+const getMe = async (userEmail: string, role: string) => {
+  let result = null
+
+  if (role === USER_ROLE.user) {
+    result = await User.findOne({ email: userEmail })
+  }
+  if (role === USER_ROLE.admin) {
+    result = await User.findOne({ email: userEmail })
+  }
+  if (role === USER_ROLE.superAdmin) {
+    result = await User.findOne({ email: userEmail })
+  }
+
+  return result
+}
+
 export const AuthServices = {
   registerUser,
   loginUser,
@@ -253,4 +270,5 @@ export const AuthServices = {
   refreshToken,
   forgetPassword,
   resetPassword,
+  getMe,
 }
