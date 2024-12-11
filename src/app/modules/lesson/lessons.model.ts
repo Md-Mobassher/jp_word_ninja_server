@@ -1,4 +1,4 @@
-import { model, Schema } from 'mongoose'
+import mongoose, { model, Schema } from 'mongoose'
 import { ILessons } from './lessons.interface'
 
 const lessonsSchema = new Schema<ILessons>(
@@ -15,6 +15,16 @@ const lessonsSchema = new Schema<ILessons>(
     vocabCount: {
       type: Number,
       default: 0,
+    },
+    tutorialId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Tutorial',
+      required: true,
+    },
+    vocabularyId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Vocabulary',
+      required: true,
     },
   },
   {

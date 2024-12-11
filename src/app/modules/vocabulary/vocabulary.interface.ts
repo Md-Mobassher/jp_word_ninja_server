@@ -1,11 +1,13 @@
 import { Types } from 'mongoose'
 
 export interface ITutorial {
-  id: string
-  title: string
-  youtubeLink: string
+  word: string
+  meaning: string
+  pronunciation: string
+  partOfSpeech: string
   lessonId: Types.ObjectId
-  description?: string
+  audioUrl?: string
+  exampleSentence?: string
   createdAt: Date
   updatedAt: Date
 }

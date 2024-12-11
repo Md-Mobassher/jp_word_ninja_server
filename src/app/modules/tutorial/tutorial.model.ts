@@ -1,4 +1,4 @@
-import { model, Schema } from 'mongoose'
+import mongoose, { model, Schema } from 'mongoose'
 import { ITutorial } from './tutorial.interface'
 
 const TutorialSchema = new Schema<ITutorial>(
@@ -24,6 +24,11 @@ const TutorialSchema = new Schema<ITutorial>(
       type: String,
       trim: true,
       maxlength: 500,
+    },
+    lessonId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Lesson',
+      required: true,
     },
   },
   {
