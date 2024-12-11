@@ -1,37 +1,37 @@
 import express from 'express'
 import auth from '../../middlewares/auth'
 import { USER_ROLE } from '../users/user.constant'
-import { TutorialControllers } from './vocabulary.controller'
+import { VocabularyControllers } from './vocabulary.controller'
 
 const router = express.Router()
 
 router.post(
   '/',
   auth(USER_ROLE.superAdmin, USER_ROLE.admin),
-  TutorialControllers.createTutorial,
+  VocabularyControllers.createVocabulary,
 )
 router.get(
   '/',
   auth(USER_ROLE.superAdmin, USER_ROLE.admin, USER_ROLE.user),
-  TutorialControllers.getAllTutorial,
+  VocabularyControllers.getAllVocabulary,
 )
 
 router.get(
   '/:id',
   auth(USER_ROLE.superAdmin, USER_ROLE.admin, USER_ROLE.user),
-  TutorialControllers.getSingleTutorial,
+  VocabularyControllers.getSingleVocabulary,
 )
 
 router.patch(
   '/:id',
   auth(USER_ROLE.superAdmin, USER_ROLE.admin),
-  TutorialControllers.updateTutorial,
+  VocabularyControllers.updateVocabulary,
 )
 
 router.delete(
   '/:id',
   auth(USER_ROLE.superAdmin, USER_ROLE.admin),
-  TutorialControllers.deleteTutorial,
+  VocabularyControllers.deleteVocabulary,
 )
 
-export const TutorialRoutes = router
+export const VocabularyRoutes = router

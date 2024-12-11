@@ -1,1 +1,1 @@
-export const TutorialSearchableFields = ['name']
+export const VocabularySearchableFields = ['name']

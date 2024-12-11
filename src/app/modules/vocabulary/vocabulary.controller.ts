@@ -1,11 +1,11 @@
 import httpStatus from 'http-status'
 import catchAsync from '../../utils/catchAsync'
 import sendResponse from '../../utils/sendResponse'
-import { TutorialServices } from './tutorial.service'
 import AppError from '../../errors/AppError'
+import { VocabularyServices } from './vocabulary.service'
 
-const createTutorial = catchAsync(async (req, res) => {
-  const result = await TutorialServices.createTutorial(req.body)
+const createVocabulary = catchAsync(async (req, res) => {
+  const result = await VocabularyServices.createVocabulary(req.body)
 
   if (!result) {
     throw new AppError(httpStatus.BAD_REQUEST, 'No data found')
@@ -14,13 +14,13 @@ const createTutorial = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Tutorial is created succesfully',
+    message: 'Vocabulary is created succesfully',
     data: result,
   })
 })
 
-const getAllTutorial = catchAsync(async (req, res) => {
-  const result = await TutorialServices.getAllTutorial(req.query)
+const getAllVocabulary = catchAsync(async (req, res) => {
+  const result = await VocabularyServices.getAllVocabulary(req.query)
   if (!result) {
     throw new AppError(httpStatus.BAD_REQUEST, 'No data found')
   }
@@ -28,15 +28,15 @@ const getAllTutorial = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Tutorial are retrived succesfully.',
+    message: 'Vocabulary are retrived succesfully.',
     data: result.result,
     meta: result.meta,
   })
 })
 
-const getSingleTutorial = catchAsync(async (req, res) => {
+const getSingleVocabulary = catchAsync(async (req, res) => {
   const { id } = req.params
-  const result = await TutorialServices.getSingleTutorial(id)
+  const result = await VocabularyServices.getSingleVocabulary(id)
   if (!result) {
     throw new AppError(httpStatus.BAD_REQUEST, 'No data found')
   }
@@ -44,14 +44,14 @@ const getSingleTutorial = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Tutorial is retrived succesfully.',
+    message: 'Vocabulary is retrived succesfully.',
     data: result,
   })
 })
 
-const updateTutorial = catchAsync(async (req, res) => {
+const updateVocabulary = catchAsync(async (req, res) => {
   const { id } = req.params
-  const result = await TutorialServices.updateTutorial(id, req.body)
+  const result = await VocabularyServices.updateVocabulary(id, req.body)
   if (!result) {
     throw new AppError(httpStatus.BAD_REQUEST, 'No data found')
   }
@@ -59,27 +59,27 @@ const updateTutorial = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Tutorial is updated succesfully.',
+    message: 'Vocabulary is updated succesfully.',
     data: result,
   })
 })
 
-const deleteTutorial = catchAsync(async (req, res) => {
+const deleteVocabulary = catchAsync(async (req, res) => {
   const { id } = req.params
-  const result = await TutorialServices.deleteTutorial(id)
+  const result = await VocabularyServices.deleteVocabulary(id)
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Tutorial is deleted succesfully.',
+    message: 'Vocabulary is deleted succesfully.',
     data: result,
   })
 })
 
-export const TutorialControllers = {
-  createTutorial,
-  getAllTutorial,
-  getSingleTutorial,
-  updateTutorial,
-  deleteTutorial,
+export const VocabularyControllers = {
+  createVocabulary,
+  getAllVocabulary,
+  getSingleVocabulary,
+  updateVocabulary,
+  deleteVocabulary,
 }

@@ -1,6 +1,6 @@
 import { Types } from 'mongoose'
 
-export interface ITutorial {
+export interface IVocabulary {
   word: string
   meaning: string
   pronunciation: string

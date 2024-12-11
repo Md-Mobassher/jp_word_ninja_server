@@ -1,7 +1,7 @@
 import mongoose, { model, Schema } from 'mongoose'
-import { ITutorial } from './vocabulary.interface'
+import { IVocabulary } from './vocabulary.interface'
 
-const TutorialSchema = new Schema<ITutorial>(
+const VocabularySchema = new Schema<IVocabulary>(
   {
     word: { type: String, required: true, unique: true },
     meaning: { type: String, required: true },
@@ -18,4 +18,4 @@ const TutorialSchema = new Schema<ITutorial>(
   { timestamps: true },
 )
 
-export const Tutorial = model<ITutorial>('Tutorial', TutorialSchema)
+export const Vocabulary = model<IVocabulary>('Vocabulary', VocabularySchema)

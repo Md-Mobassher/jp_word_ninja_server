@@ -1,62 +1,62 @@
 import httpStatus from 'http-status'
 import QueryBuilder from '../../builder/QueryBuilder'
 import AppError from '../../errors/AppError'
-import { ITutorial } from './vocabulary.interface'
-import { Tutorial } from './vocabulary.model'
-import { TutorialSearchableFields } from './vocabulary.constant'
+import { Vocabulary } from './vocabulary.model'
+import { IVocabulary } from './vocabulary.interface'
+import { VocabularySearchableFields } from './vocabulary.constant'
 
-const createTutorial = async (payload: ITutorial) => {
-  const newTutorial = await Tutorial.create(payload)
+const createVocabulary = async (payload: IVocabulary) => {
+  const newVocabulary = await Vocabulary.create(payload)
 
-  if (!newTutorial) {
-    throw new AppError(httpStatus.BAD_REQUEST, 'Failed to create Tutorial')
+  if (!newVocabulary) {
+    throw new AppError(httpStatus.BAD_REQUEST, 'Failed to create Vocabulary')
   }
-  return newTutorial
+  return newVocabulary
 }
 
-const getAllTutorial = async (query: Record<string, unknown>) => {
-  const TutorialQuery = new QueryBuilder(Tutorial.find(), query)
-    .search(TutorialSearchableFields)
+const getAllVocabulary = async (query: Record<string, unknown>) => {
+  const VocabularyQuery = new QueryBuilder(Vocabulary.find(), query)
+    .search(VocabularySearchableFields)
     .filter()
     .sort()
     .paginate()
     .fields()
 
-  const result = await TutorialQuery.modelQuery
-  const meta = await TutorialQuery.countTotal()
+  const result = await VocabularyQuery.modelQuery
+  const meta = await VocabularyQuery.countTotal()
   return {
     result,
     meta,
   }
 }
 
-const getSingleTutorial = async (id: string) => {
-  const result = await Tutorial.findById(id)
+const getSingleVocabulary = async (id: string) => {
+  const result = await Vocabulary.findById(id)
   return result
 }
 
-const updateTutorial = async (id: string, payload: Partial<ITutorial>) => {
-  const result = await Tutorial.findByIdAndUpdate(id, payload, {
+const updateVocabulary = async (id: string, payload: Partial<IVocabulary>) => {
+  const result = await Vocabulary.findByIdAndUpdate(id, payload, {
     new: true,
     runValidators: true,
   })
   return result
 }
 
-const deleteTutorial = async (id: string) => {
-  const isVideoExist = await Tutorial.findById(id)
+const deleteVocabulary = async (id: string) => {
+  const isVideoExist = await Vocabulary.findById(id)
   if (!isVideoExist) {
-    throw new AppError(httpStatus.BAD_REQUEST, 'No Tutorial found')
+    throw new AppError(httpStatus.BAD_REQUEST, 'No Vocabulary found')
   }
-  await Tutorial.findByIdAndDelete(id)
+  await Vocabulary.findByIdAndDelete(id)
 
   return null
 }
 
-export const TutorialServices = {
-  createTutorial,
-  getAllTutorial,
-  getSingleTutorial,
-  updateTutorial,
-  deleteTutorial,
+export const VocabularyServices = {
+  createVocabulary,
+  getAllVocabulary,
+  getSingleVocabulary,
+  updateVocabulary,
+  deleteVocabulary,
 }
