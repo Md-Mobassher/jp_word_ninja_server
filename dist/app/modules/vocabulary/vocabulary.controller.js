@@ -12,77 +12,77 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TutorialControllers = void 0;
+exports.VocabularyControllers = void 0;
 const http_status_1 = __importDefault(require("http-status"));
 const catchAsync_1 = __importDefault(require("../../utils/catchAsync"));
 const sendResponse_1 = __importDefault(require("../../utils/sendResponse"));
-const tutorial_service_1 = require("./tutorial.service");
 const AppError_1 = __importDefault(require("../../errors/AppError"));
-const createTutorial = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield tutorial_service_1.TutorialServices.createTutorial(req.body);
+const vocabulary_service_1 = require("./vocabulary.service");
+const createVocabulary = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield vocabulary_service_1.VocabularyServices.createVocabulary(req.body);
     if (!result) {
         throw new AppError_1.default(http_status_1.default.BAD_REQUEST, 'No data found');
     }
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'Tutorial is created succesfully',
+        message: 'Vocabulary is created succesfully',
         data: result,
     });
 }));
-const getAllTutorial = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield tutorial_service_1.TutorialServices.getAllTutorial(req.query);
+const getAllVocabulary = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield vocabulary_service_1.VocabularyServices.getAllVocabulary(req.query);
     if (!result) {
         throw new AppError_1.default(http_status_1.default.BAD_REQUEST, 'No data found');
     }
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'Tutorial are retrived succesfully.',
+        message: 'Vocabulary are retrived succesfully.',
         data: result.result,
         meta: result.meta,
     });
 }));
-const getSingleTutorial = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getSingleVocabulary = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const result = yield tutorial_service_1.TutorialServices.getSingleTutorial(id);
+    const result = yield vocabulary_service_1.VocabularyServices.getSingleVocabulary(id);
     if (!result) {
         throw new AppError_1.default(http_status_1.default.BAD_REQUEST, 'No data found');
     }
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'Tutorial is retrived succesfully.',
+        message: 'Vocabulary is retrived succesfully.',
         data: result,
     });
 }));
-const updateTutorial = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const updateVocabulary = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const result = yield tutorial_service_1.TutorialServices.updateTutorial(id, req.body);
+    const result = yield vocabulary_service_1.VocabularyServices.updateVocabulary(id, req.body);
     if (!result) {
         throw new AppError_1.default(http_status_1.default.BAD_REQUEST, 'No data found');
     }
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'Tutorial is updated succesfully.',
+        message: 'Vocabulary is updated succesfully.',
         data: result,
     });
 }));
-const deleteTutorial = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const deleteVocabulary = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const result = yield tutorial_service_1.TutorialServices.deleteTutorial(id);
+    const result = yield vocabulary_service_1.VocabularyServices.deleteVocabulary(id);
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,
         success: true,
-        message: 'Tutorial is deleted succesfully.',
+        message: 'Vocabulary is deleted succesfully.',
         data: result,
     });
 }));
-exports.TutorialControllers = {
-    createTutorial,
-    getAllTutorial,
-    getSingleTutorial,
-    updateTutorial,
-    deleteTutorial,
+exports.VocabularyControllers = {
+    createVocabulary,
+    getAllVocabulary,
+    getSingleVocabulary,
+    updateVocabulary,
+    deleteVocabulary,
 };

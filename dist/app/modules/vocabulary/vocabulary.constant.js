@@ -1,4 +1,4 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TutorialSearchableFields = void 0;
-exports.TutorialSearchableFields = ['name'];
+exports.VocabularySearchableFields = void 0;
+exports.VocabularySearchableFields = ['name'];

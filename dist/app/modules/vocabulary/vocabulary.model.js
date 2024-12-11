@@ -23,9 +23,9 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Tutorial = void 0;
+exports.Vocabulary = void 0;
 const mongoose_1 = __importStar(require("mongoose"));
-const TutorialSchema = new mongoose_1.Schema({
+const VocabularySchema = new mongoose_1.Schema({
     word: { type: String, required: true, unique: true },
     meaning: { type: String, required: true },
     pronunciation: { type: String, required: true },
@@ -38,4 +38,4 @@ const TutorialSchema = new mongoose_1.Schema({
         required: true,
     },
 }, { timestamps: true });
-exports.Tutorial = (0, mongoose_1.model)('Tutorial', TutorialSchema);
+exports.Vocabulary = (0, mongoose_1.model)('Vocabulary', VocabularySchema);
